@@ -14,7 +14,7 @@ async function playGame() {
 
 	if (variant) {
 		// RPSLS
-		if (singlePlayer && !shot) {
+		if (singlePlayer) {
 			// No opponent
 			result.innerHTML = `Result: ${json.player}`;
 			const response = await fetch(`/app/rpsls/play`);
@@ -42,7 +42,7 @@ async function playGame() {
 		}
 	} else {
 		// RPS
-		if (singlePlayer && !shot) {
+		if (singlePlayer) {
 			// No opponent
 			result.innerHTML = `Result: ${json.player}`;
 			const response = await fetch(`/app/rps/play`);
@@ -69,10 +69,10 @@ async function playGame() {
 			console.log(data);
 		}
 	}
-	result.className = "show";
-	player.className = "show";
-	opponent.className = "show";
-	results.className = "show";
+	result.className = "inline";
+	player.className = "inline";
+	opponent.className = "inline";
+	results.className = "inline";
 }
 
 // Select RPS or RPSLS
