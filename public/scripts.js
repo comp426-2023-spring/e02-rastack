@@ -12,9 +12,7 @@ async function playGame() {
 	var result = document.getElementById("result");
 	var results = document.getElementById("results");
 
-	console.log("play");
 	if (variant) {
-		console.log("variant");
 		// RPSLS
 		if (singlePlayer) {
 			// No opponent
@@ -43,7 +41,6 @@ async function playGame() {
 			console.log(data);
 		}
 	} else {
-		console.log("classic")
 		// RPS
 		if (singlePlayer) {
 			// No opponent
