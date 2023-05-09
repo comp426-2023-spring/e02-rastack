@@ -1,12 +1,75 @@
-<html>
+<html lang="en">
     <head>
-        <title>Rock</title>
+        <title>Rock, Paper, Scissors</title>
         <!-- Link to your script file(s) and CSS in here somewhere -->
+	<script src="./scripts.js"></script>
+	<link rel="stylesheet" href="./styles.css">
     </head>
     <body>
+	    <div class="main">
+            <h1 class="header">Select a game mode</h1>
 
-    <!-- Your interface markup goes here -->
-    <!-- For interface examples, look in the `/examples/` directory in the root of your starter code repo. -->
+	    <!-- Game select -->
+	    <br>
+	    <input type="radio" id="rps" name="version" onclick="selectRPS()" value="RPS">
+            <label for="rpsSelect">Rock, Paper, Scissors</label><br>
+            <input type="radio" id="rpsls" name="version" onclick="selectRPSLS()" value="RPSLS">
+            <label for="rpslsSelect">Rock, Paper, Scissors, Lizard, Spock</label><br>
+            <br>
+	    <!-- Opp select -->
+	    <input type="checkbox" name="opp" id="opp" value="opp" onclick="selectOpp()">
+       	    <label for="opp">Multiplayer</label>
+	    <!-- Start -->
+	    <div id="rps" class="inactive">
+                <strong>Your move:</strong>
+                <br>
+                <input type="radio" id="rock" name="move" value="rock">
+                <label for="rock">Rock</label><br>
+                <input type="radio" id="paper" name="move" value="paper">
+                <label for="paper">Paper</label><br>
+                <input type="radio" id="scissors" name="move" value="scissors">
+                <label for="scissors">Scissors</label><br>
+            </div>
+            <div id="rpsls" class="inactive">
+                <input type="radio" id="lizard" name="move" value="lizard">
+                <label for="lizard">Lizard</label><br>
+                <input type="radio" id="spock" name="move" value="spock">
+                <label for="spock">Spock</label><br>
+            </div>
+            <br>
 
+	    <button type="button" id="play" onclick="playGame()">Play Game</button>
+	    <button type="button" id="reset" onclick="reset()">Restart</button>
+
+	    <!-- Rules -->
+	    <button type="button" class="rules" onclick="displayRules()">Rules</button>
+
+    	    </div>
+	    <div id="result" class="hide">
+		    <h2>Results:</h2>
+		    <p id="result">Results: </p>
+    	    </div>
+	    <div id="rules">
+		    	<h3>Rules</h3>
+                        <h3>Rock Paper Scissors:</h3>
+                            <ul>
+                                <li>Scissors CUTS Paper</li>
+                                <li>Paper COVERS Rock</li>
+                                <li>Rock CRUSHES Scissors</li>
+                            </ul>
+                            <h3>Rock Paper Scissors Lizard Spock:</h3>
+                            <ul>
+                                <li>Scissors CUTS Paper</li>
+                                <li>Paper COVERS Rock</li>
+                                <li>Rock SMOOSHES Lizard</li>
+                                <li>Lizard POISONS Spock</li>
+                                <li>Spock SMASHES Scissors</li>
+                                <li>Scissors DECAPITATES Lizard</li>
+                                <li>Lizard EATS Paper</li>
+                                <li>Paper DISPROVES Spock</li>
+                                <li>Spock VAPORIZES Rock</li>
+                                <li>Rock CRUSHES Scissors</li>
+                            </ul>
+                        </div>
     </body>
 </html>
