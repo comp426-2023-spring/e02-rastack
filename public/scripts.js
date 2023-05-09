@@ -10,12 +10,13 @@ async function playGame() {
 	var player = document.getElementById("player");
 	var opponent = document.getElementById("opp");
 	var result = document.getElementById("result");
+	var results = document.getElementById("results");
 
 	if (variant) {
 		// RPSLS
 		if (singlePlayer && !shot) {
 			// No opponent
-			document.getElementById("result").innerText = `Results: ${json.player}`;
+			result.innerHTML = `Result: ${json.player}`;
 			const response = await fetch(`/app/rpsls/play`);
 			const data = await response.json();
 			console.log(data);
@@ -29,16 +30,13 @@ async function playGame() {
                 	break;
             	}
         	}
-			document.getElementById("player").innerText = `Player: ${json.player}`;
-			document.getElementById("opp").innerText = `${json.opp}`;
-			document.getElementById("results").innerText = `${json.results}`;
 
 			const response = await fetch(`/app/rpsls/play/${shot}`);
 			const data = await response.json();
 
 			player.innerHTML = `Player: ${data.player}.`;
-      			opponent.innerHTML = `Opponent: ${data.opponent}.`;
-      			result.innerHTML = `Result: ${data.result}.`;
+      		opponent.innerHTML = `Opponent: ${data.opponent}.`;
+      		result.innerHTML = `Result: ${data.result}.`;
 
 			console.log(data);
 		}
@@ -46,7 +44,7 @@ async function playGame() {
 		// RPS
 		if (singlePlayer && !shot) {
 			// No opponent
-			document.getElementById("result").innerText = `Results: ${json.player}`;
+			result.innerHTML = `Result: ${json.player}`;
 			const response = await fetch(`/app/rps/play`);
 			const data = await response.json();
 			console.log(data);
@@ -60,24 +58,21 @@ async function playGame() {
                 	break;
             	}
         	}
-			document.getElementById("player").innerText = `Player: ${json.player}`;
-			document.getElementById("opp").innerText = `${json.opp}`;
-			document.getElementById("results").innerText = `${json.results}`;
 
 			const response = await fetch(`/app/rps/play/${shot}`);
 			const data = await response.json();
 
 			player.innerHTML = `Player: ${data.player}.`;
-      			opponent.innerHTML = `Opponent: ${data.opponent}.`;
-      			result.innerHTML = `Result: ${data.result}.`;
+      		opponent.innerHTML = `Opponent: ${data.opponent}.`;
+      		result.innerHTML = `Result: ${data.result}.`;
 
 			console.log(data);
 		}
 	}
-	document.getElementById("result").className = "show";
-	document.getElementById("player").className = "show";
-	document.getElementById("opp").className = "show";
-	document.getElementById("results").className = "show";
+	result.className = "show";
+	player.className = "show";
+	opponent.className = "show";
+	results.className = "show";
 }
 
 // Select RPS or RPSLS
