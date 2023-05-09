@@ -11,29 +11,29 @@
 
 	    <!-- Game select -->
 	    <br>
-	    <input type="radio" id="rps" name="version" onclick="selectRPS()" value="RPS">
+	    <input type="radio" id="rps" name="game-mode" value="RPS" onclick="selectRPS()">
             <label for="rpsSelect">Rock, Paper, Scissors</label><br>
-            <input type="radio" id="rpsls" name="version" onclick="selectRPSLS()" value="RPSLS">
-            <label for="rpslsSelect">Rock, Paper, Scissors, Lizard, Spock</label><br>
+            <input type="radio" id="rpsls" name="game-mode" value="RPSLS" onclick="selectRPSLS()">
+            <label for="rpslsSelect">Rock, Paper, Scissors, Lizard, Spock</label>
             <br>
-	    <!-- Opp select -->
-	    <input type="checkbox" name="opp" id="opp" value="opp" onclick="selectOpp()">
+	    <!-- Opponent select -->
+	    <input type="checkbox" name="opp-mode" id="opp" value="opp" onclick="selectOpp()">
        	    <label for="opp">Multiplayer</label>
 	    <!-- Start -->
-	    <div id="rps" class="inactive">
+	    <div id="shots">
                 <strong>Your move:</strong>
                 <br>
-                <input type="radio" id="rock" name="move" value="rock">
+                <input type="radio" id="rock" name="shot" value="rock" class="hide">
                 <label for="rock">Rock</label><br>
-                <input type="radio" id="paper" name="move" value="paper">
+                <input type="radio" id="paper" name="shot" value="paper" class="hide">
                 <label for="paper">Paper</label><br>
-                <input type="radio" id="scissors" name="move" value="scissors">
+                <input type="radio" id="scissors" name="shot" value="scissors" class="hide">
                 <label for="scissors">Scissors</label><br>
             </div>
-            <div id="rpsls" class="inactive">
-                <input type="radio" id="lizard" name="move" value="lizard">
+            <div id="rpslsShots">
+                <input type="radio" id="lizard" name="shot" value="lizard" class="hide">
                 <label for="lizard">Lizard</label><br>
-                <input type="radio" id="spock" name="move" value="spock">
+                <input type="radio" id="spock" name="shot" value="spock" class="hide">
                 <label for="spock">Spock</label><br>
             </div>
             <br>
@@ -43,33 +43,35 @@
 
 	    <!-- Rules -->
 	    <button type="button" class="rules" onclick="displayRules()">Rules</button>
-
-    	    </div>
-	    <div id="result" class="hide">
-		    <h2>Results:</h2>
-		    <p id="result">Results: </p>
-    	    </div>
-	    <div id="rules">
-		    	<h3>Rules</h3>
-                        <h3>Rock Paper Scissors:</h3>
-                            <ul>
-                                <li>Scissors CUTS Paper</li>
-                                <li>Paper COVERS Rock</li>
-                                <li>Rock CRUSHES Scissors</li>
-                            </ul>
-                            <h3>Rock Paper Scissors Lizard Spock:</h3>
-                            <ul>
-                                <li>Scissors CUTS Paper</li>
-                                <li>Paper COVERS Rock</li>
-                                <li>Rock SMOOSHES Lizard</li>
-                                <li>Lizard POISONS Spock</li>
-                                <li>Spock SMASHES Scissors</li>
-                                <li>Scissors DECAPITATES Lizard</li>
-                                <li>Lizard EATS Paper</li>
-                                <li>Paper DISPROVES Spock</li>
-                                <li>Spock VAPORIZES Rock</li>
-                                <li>Rock CRUSHES Scissors</li>
-                            </ul>
-                        </div>
+    
+    </div>
+    <div id="result" class="hide">
+        <h3>Results</h3>
+        <p id="player" class="hide">Player: </p>
+	    <p id="opp" class="hide">Opponent: </p>
+	    <p id="results" class="hide">Results: </p>
+    </div>
+	<div id="rules" class="hide">
+		    <h3>Rules</h3>
+                    <h3>Rock Paper Scissors:</h3>
+                        <ul>
+                            <li>Scissors CUTS Paper</li>
+                            <li>Paper COVERS Rock</li>
+                            <li>Rock CRUSHES Scissors</li>
+                        </ul>
+                        <h3>Rock Paper Scissors Lizard Spock:</h3>
+                        <ul>
+                            <li>Scissors CUTS Paper</li>
+                            <li>Paper COVERS Rock</li>
+                            <li>Rock SMOOSHES Lizard</li>
+                            <li>Lizard POISONS Spock</li>
+                            <li>Spock SMASHES Scissors</li>
+                            <li>Scissors DECAPITATES Lizard</li>
+                            <li>Lizard EATS Paper</li>
+                            <li>Paper DISPROVES Spock</li>
+                            <li>Spock VAPORIZES Rock</li>
+                            <li>Rock CRUSHES Scissors</li>
+                        </ul>
+                    </div>
     </body>
 </html>

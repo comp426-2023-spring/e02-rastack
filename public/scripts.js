@@ -2,60 +2,82 @@
 // check out the coin-server example from a previous COMP 426 semester.
 // https://github.com/jdmar3/coinserver
 
-
 var variant = false;
 var singlePlayer = true;
 
 // Play game 
 async function playGame() {
-	// var rps = document.getElementById('rps').checked;
-    	// var rpsls = document.getElementById('rpsls').checked;
-
-	var player = document.getElementById("playerChoice");
-	var opponent = document.getElementById("oppChoice");
+	var player = document.getElementById("player");
+	var opponent = document.getElementById("opp");
 	var result = document.getElementById("result");
-
-	/*
-	if (!rps && !rpsls) {
-		document.getElementById('result').innerText = 'Choose a game mode.';
-	} else if (rps) {
-		variant = false;
-	} else {
-		variant = true;
-	}
-	*/
 
 	if (variant) {
 		// RPSLS
-		if (singlePlayer) {
+		if (singlePlayer && !shot) {
 			// No opponent
+			document.getElementById("result").innerText = `Results: ${json.player}`;
 			const response = await fetch(`/app/rpsls/play`);
 			const data = await response.json();
+			console.log(data);
 		} else {
 			// Has opponent
+			var shot;
+        	var shots = document.getElementsByName("shot");
+        	for (var i = 0, length = radios.length; i < length; i++) {
+            	if (shots[i].checked) {
+            	    shots = e[i].value;
+                	break;
+            	}
+        	}
+			document.getElementById("player").innerText = `Player: ${json.player}`;
+			document.getElementById("opp").innerText = `${json.opp}`;
+			document.getElementById("results").innerText = `${json.results}`;
+
 			const response = await fetch(`/app/rpsls/play/${shot}`);
 			const data = await response.json();
 
 			player.innerHTML = `Player: ${data.player}.`;
       			opponent.innerHTML = `Opponent: ${data.opponent}.`;
       			result.innerHTML = `Result: ${data.result}.`;
+
+			console.log(data);
 		}
 	} else {
 		// RPS
-		if (singlePlayer) {
+		if (singlePlayer && !shot) {
 			// No opponent
+			document.getElementById("result").innerText = `Results: ${json.player}`;
 			const response = await fetch(`/app/rps/play`);
 			const data = await response.json();
+			console.log(data);
 		} else {
 			// Has opponent
+			var shot;
+        	var shots = document.getElementsByName("shot");
+        	for (var i = 0, length = radios.length; i < length; i++) {
+            	if (shots[i].checked) {
+            	    shots = e[i].value;
+                	break;
+            	}
+        	}
+			document.getElementById("player").innerText = `Player: ${json.player}`;
+			document.getElementById("opp").innerText = `${json.opp}`;
+			document.getElementById("results").innerText = `${json.results}`;
+
 			const response = await fetch(`/app/rps/play/${shot}`);
 			const data = await response.json();
 
 			player.innerHTML = `Player: ${data.player}.`;
       			opponent.innerHTML = `Opponent: ${data.opponent}.`;
       			result.innerHTML = `Result: ${data.result}.`;
+
+			console.log(data);
 		}
 	}
+	document.getElementById("result").className = "show";
+	document.getElementById("player").className = "show";
+	document.getElementById("opp").className = "show";
+	document.getElementById("results").className = "show";
 }
 
 // Select RPS or RPSLS
@@ -63,6 +85,9 @@ async function selectRPS() {
 	variant = false;
 	document.getElementById("lizard").className = "hide";
 	document.getElementById("spock").className = "hide";
+	document.getElementById("rock").className = "show";
+	document.getElementById("paper").className = "show";
+	document.getElementById("scissors").className = "show";
 	selectOpp();
 }
 
@@ -70,6 +95,9 @@ async function selectRPSLS() {
 	variant = true;
 	document.getElementById("lizard").className = "show";
 	document.getElementById("spock").className = "show";
+	document.getElementById("rock").className = "show";
+	document.getElementById("paper").className = "show";
+	document.getElementById("scissors").className = "show";
 	selectOpp();
 }
 
@@ -77,20 +105,22 @@ async function selectRPSLS() {
 async function selectOpp() {
 	const rps = document.getElementById("rps");
 	const rpsls = document.getElementById("rpsls");
-	const opp = document.getElementById('#opponent');
+	const opp = document.getElementById("opp");
+	const rpsShots = document.getElementById("shots");
+	const rpslsShots = document.getElementById("rpslsShots");
 
-	rps.className = "show";
+	rpsShots.className = "show";
     	if (opp.checked && !variant) {
-        	rps.className = "show";
-		rpsls.className = "hide";
+        	rpsShots.className = "show";
+			rpslsShots.className = "hide";
         	singlePlayer = false;
     	} else if (opp.checked && variant) {
-        	rps.className = "show";
-  	        rpsls.className = "show";
+        	rpsShots.className = "show";
+  	        rpslsShots.className = "show";
         	singlePlayer = false;
     	} else {
-        	rps.className = "hide";
-   	    	rpsls.className = "hide";
+        	rpsShots.className = "hide";
+   	    	rpslsShots.className = "hide";
         	singlePlayer = true;
     	}
 
@@ -110,3 +140,20 @@ function displayRules() {
 	}
 }
 
+// Display shots
+function displayShots() {
+	var rps = document.getElementById("rps").checked;
+	var rpsls = document.getElementById("rpsls").checked;
+	var opp = document.getElementById("opp").checked;
+
+	if (opp) {
+		document.getElementById("shots").className = "show";
+        	if (!rpsls) {
+        		document.getElementById("rpslsShots").className = "hide";
+        	} else {
+            		document.getElementById("rpslsShots").className = "inline";
+        	} 
+	} else {
+        	document.getElementById("shots").className = "hide";
+	}
+}
