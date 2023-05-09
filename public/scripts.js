@@ -8,11 +8,13 @@ var singlePlayer = true;
 // Play game 
 async function playGame() {
 	var player = document.getElementById("player");
-	var opponent = document.getElementById("opp");
+	var opponent = document.getElementById("opponentShot");
 	var result = document.getElementById("result");
 	var results = document.getElementById("results");
 
+	console.log("play");
 	if (variant) {
+		console.log("variant");
 		// RPSLS
 		if (singlePlayer) {
 			// No opponent
@@ -24,9 +26,9 @@ async function playGame() {
 			// Has opponent
 			var shot;
         	var shots = document.getElementsByName("shot");
-        	for (var i = 0, length = radios.length; i < length; i++) {
+        	for (var i = 0, length = shots.length; i < length; i++) {
             	if (shots[i].checked) {
-            	    shots = e[i].value;
+            	    shot = shots[i].value;
                 	break;
             	}
         	}
@@ -41,6 +43,7 @@ async function playGame() {
 			console.log(data);
 		}
 	} else {
+		console.log("classic")
 		// RPS
 		if (singlePlayer) {
 			// No opponent
@@ -52,9 +55,9 @@ async function playGame() {
 			// Has opponent
 			var shot;
         	var shots = document.getElementsByName("shot");
-        	for (var i = 0, length = radios.length; i < length; i++) {
+        	for (var i = 0, length = shots.length; i < length; i++) {
             	if (shots[i].checked) {
-            	    shots = e[i].value;
+            	    shot = shots[i].value;
                 	break;
             	}
         	}
@@ -69,10 +72,10 @@ async function playGame() {
 			console.log(data);
 		}
 	}
-	result.className = "inline";
-	player.className = "inline";
-	opponent.className = "inline";
 	results.className = "inline";
+	player.className = "show";
+	opponent.className = "show";
+	result.className = "show";
 }
 
 // Select RPS or RPSLS
@@ -100,16 +103,16 @@ async function selectRPSLS() {
 async function selectOpp() {
 	const rps = document.getElementById("rps");
 	const rpsls = document.getElementById("rpsls");
-	const opp = document.getElementById("opp");
+	const opponent = document.getElementById("opponent");
 	const rpsShots = document.getElementById("shots");
 	const rpslsShots = document.getElementById("rpslsShots");
 
 	rpsShots.className = "show";
-    	if (opp.checked && !variant) {
+    	if (opponent.checked && !variant) {
         	rpsShots.className = "show";
 			rpslsShots.className = "hide";
         	singlePlayer = false;
-    	} else if (opp.checked && variant) {
+    	} else if (opponent.checked && variant) {
         	rpsShots.className = "show";
   	        rpslsShots.className = "show";
         	singlePlayer = false;
@@ -132,23 +135,5 @@ function displayRules() {
 		document.getElementById("rules").className = "inline";
 	} else {
 		document.getElementById("rules").className = "hide";
-	}
-}
-
-// Display shots
-function displayShots() {
-	var rps = document.getElementById("rps").checked;
-	var rpsls = document.getElementById("rpsls").checked;
-	var opp = document.getElementById("opp").checked;
-
-	if (opp) {
-		document.getElementById("shots").className = "show";
-        	if (!rpsls) {
-        		document.getElementById("rpslsShots").className = "hide";
-        	} else {
-            		document.getElementById("rpslsShots").className = "inline";
-        	} 
-	} else {
-        	document.getElementById("shots").className = "hide";
 	}
 }
